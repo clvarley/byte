@@ -5,7 +5,7 @@ namespace Clvarley\Byte\Stream;
 use function strlen;
 
 /**
- * Represents a sequence of bytes
+ * Represents a simple sequence of bytes
  *
  * Because PHP lacks a low-level type for handling bytes, we have to make use of
  * a string to store and work with our data.
@@ -30,6 +30,8 @@ Class ByteStream
 
     /**
      * Returns the length of this stream in bytes
+     *
+     * @return int Stream length
      */
     public function length() : int
     {
