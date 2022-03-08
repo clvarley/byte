@@ -85,7 +85,11 @@ Class ByteStream Implements StreamInterface
      */
     public function read( int $length ) : string
     {
-        return substr( $this->bytes, $this->position, $length );
+        $bytes = substr( $this->bytes, $this->position, $length );
+
+        $this->position += $length;
+
+        return $bytes;
     }
 
     /**
