@@ -5,6 +5,8 @@ namespace Clvarley\Byte\Stream;
 use Clvarley\Byte\StreamInterface;
 
 use function strlen;
+use function substr;
+use function substr_replace;
 
 /**
  * Represents a simple sequence of bytes
@@ -83,7 +85,7 @@ Class ByteStream Implements StreamInterface
      */
     public function read( int $length ) : string
     {
-        // TODO
+        return substr( $this->bytes, $this->position, $length );
     }
 
     /**
@@ -93,6 +95,13 @@ Class ByteStream Implements StreamInterface
      */
     public function write( string $bytes ) : void
     {
-        // TODO
+        $this->bytes = substr_replace(
+            $this->bytes,
+            $bytes,
+            $this->position,
+            0
+        );
+
+        $this->position += strlen( $bytes );
     }
 }
