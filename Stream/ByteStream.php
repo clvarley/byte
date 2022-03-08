@@ -2,6 +2,8 @@
 
 namespace Clvarley\Byte\Stream;
 
+use Clvarley\Byte\StreamInterface;
+
 use function strlen;
 
 /**
@@ -10,7 +12,7 @@ use function strlen;
  * Because PHP lacks a low-level type for handling bytes, we have to make use of
  * a string to store and work with our data.
  */
-Class ByteStream
+Class ByteStream Implements StreamInterface
 {
 
     /**
