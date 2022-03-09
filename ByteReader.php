@@ -27,21 +27,25 @@ Final Class ByteReader
 
     public function readChar() : string
     {
-        return $this->bytes->read( 1 );
-    }
-
-    public function readInt8() : int
-    {
-
+        return $this->read( 'c', 1 );
     }
 
     public function readInt16() : int
     {
-
+        return $this->read( 's', 2 );
     }
 
     public function readInt32() : int
     {
+        return $this->read( 'l', 4 );
+    }
 
+    private function read( string $format, int $length ) : ?string
+    {
+        $segment = $this->bytes->read( $length );
+
+        $result = unpack( $format, $segment );
+
+        return $result[1] ?? null;
     }
 }
