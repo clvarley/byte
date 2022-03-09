@@ -23,6 +23,11 @@ Class ByteStream Implements StreamInterface
     protected $bytes;
 
     /**
+     * @var int $length Stream length
+     */
+    protected $length;
+
+    /**
      * @var int $position Current needle position
      */
     protected $position = 0;
@@ -35,6 +40,7 @@ Class ByteStream Implements StreamInterface
     public function __construct( string $bytes = '' )
     {
         $this->bytes = $bytes;
+        $this->length = strlen( $bytes );
     }
 
     /**
@@ -44,7 +50,7 @@ Class ByteStream Implements StreamInterface
      */
     public function length() : int
     {
-        return strlen( $this->bytes );
+        return $this->length;
     }
 
     /**
@@ -64,7 +70,7 @@ Class ByteStream Implements StreamInterface
      */
     public function eof() : bool
     {
-        return $this->position >= $this->length();
+        return $this->position >= $this->length;
     }
 
     /**
@@ -106,6 +112,9 @@ Class ByteStream Implements StreamInterface
             0
         );
 
-        $this->position += strlen( $bytes );
+        $length = strlen( $bytes );
+
+        $this->position += $length;
+        $this->length += $length;
     }
 }
